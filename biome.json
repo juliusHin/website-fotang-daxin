@@ -9,7 +9,8 @@
       "!**/build",
       "!**/drizzle",
       "!**/playwright-report",
-      "!**/test-results"
+      "!**/test-results",
+      "!**/*.svelte"
     ]
   },
   "formatter": {
