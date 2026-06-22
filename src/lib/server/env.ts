@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+const optionalUrl = z.preprocess((v) => (v === '' ? undefined : v), z.string().url().optional())
+
 const schema = z.object({
 	NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
 	PUBLIC_SITE_URL: z.string().url(),
@@ -7,12 +9,12 @@ const schema = z.object({
 
 	DATABASE_URL: z.string().optional(),
 	BETTER_AUTH_SECRET: z.string().optional(),
-	BETTER_AUTH_URL: z.string().url().optional(),
+	BETTER_AUTH_URL: optionalUrl,
 	R2_ACCOUNT_ID: z.string().optional(),
 	R2_ACCESS_KEY_ID: z.string().optional(),
 	R2_SECRET_ACCESS_KEY: z.string().optional(),
 	R2_BUCKET: z.string().optional(),
-	R2_PUBLIC_BASE_URL: z.string().url().optional(),
+	R2_PUBLIC_BASE_URL: optionalUrl,
 	RESEND_API_KEY: z.string().optional(),
 })
 
