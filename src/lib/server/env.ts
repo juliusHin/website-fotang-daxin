@@ -1,4 +1,6 @@
 import { z } from 'zod'
+import { env as privateEnv } from '$env/dynamic/private'
+import { env as publicEnv } from '$env/dynamic/public'
 
 const optionalUrl = z.preprocess((v) => (v === '' ? undefined : v), z.string().url().optional())
 
@@ -18,8 +20,10 @@ const schema = z.object({
 	RESEND_API_KEY: z.string().optional(),
 })
 
+const raw = { ...privateEnv, ...publicEnv }
+
 function load() {
-	const parsed = schema.safeParse(process.env)
+	const parsed = schema.safeParse(raw)
 	if (!parsed.success) {
 		const issues = parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')
 		throw new Error(`Invalid environment variables: ${issues}`)
