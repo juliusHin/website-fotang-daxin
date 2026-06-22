@@ -1,42 +1,30 @@
-# sv
+# Website Fotang Daxin
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Aplikasi manajemen komunitas Fotang Daxin: data umat, kelas, pendaftaran peserta,
+blog/rangkuman, dan media upload. Publik dapat melihat info kelas & blog;
+admin/pengurus mengelola data melalui dashboard yang dilindungi autentikasi.
 
-## Creating a project
+## Prasyarat
+- [Bun](https://bun.sh) 1.3+
+- Node 20+ (untuk beberapa tooling)
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
+## Setup
+```bash
+cp .env.example .env      # sesuaikan nilai
+bun install
+bun run dev               # http://localhost:5173
 ```
 
-To recreate this project with the same configuration:
+## Skrip
+| Perintah | Keterangan |
+|---|---|
+| `bun run dev` | Dev server |
+| `bun run build` | Build produksi (adapter-node) |
+| `bun run check` | Typecheck (svelte-check) |
+| `bun run lint` | Lint via Biome |
+| `bun run test` | Unit test (bun test) |
+| `bun run test:e2e` | E2E (Playwright) |
 
-```sh
-# recreate this project
-npx sv@0.16.1 create --template minimal --types ts --no-install /tmp/opencode/sv-bootstrap
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Status
+Fase 1 (Scaffold) — selesai. Fase berikutnya: Database, Auth, lalu modul fitur.
+Lihat `docs/superpowers/specs/` dan `docs/superpowers/plans/`.
